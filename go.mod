@@ -10,5 +10,4 @@ require (
 require (
 	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/nsf/termbox-go v1.1.1 // indirect
-	github.com/stretchr/testify v1.7.0 // indirect
 )
