@@ -29,7 +29,7 @@ func Daemon_start(g *gocui.Gui, terminal chan string) {
 	log.SetOutput(wrt)
 	log.Println("OpenJump started.")
 	config_list := openvpn.GetConfigs()
-	go openvpn.Wheel(config_list, 5, terminal, config_chan)
+	go openvpn.Wheel(config_list, 300, terminal, config_chan)
 	for {
 		select {
 		case config_msg := <-config_chan:
