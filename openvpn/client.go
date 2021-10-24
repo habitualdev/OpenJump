@@ -87,6 +87,7 @@ func Tunnel(config_file string, waittime int, wrt io.Writer, terminate chan bool
 		case <-time.After(time.Duration(waittime) * time.Millisecond):
 			session.Stop()
 
+
 		}
 	}
 }
@@ -97,6 +98,5 @@ func WheelInTheSky(waittime int, wrt io.Writer, terminate chan bool) {
 		filename := config_file.Name()
 		pathname := "hops/" + filename
 		Tunnel(pathname, waittime, wrt, terminate)
-
 	}
 }

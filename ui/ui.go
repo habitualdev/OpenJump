@@ -3,6 +3,7 @@ package ui
 import (
 	"fmt"
 	"github.com/jroimartin/gocui"
+	"os"
 	"time"
 )
 
@@ -60,5 +61,6 @@ func Layout(g *gocui.Gui) error {
 	return nil
 }
 func quit(g *gocui.Gui, v *gocui.View) error {
+	os.Exit(0)
 	return gocui.ErrQuit
 }

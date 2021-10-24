@@ -17,7 +17,7 @@ var (
 	)
 
 func main(){
-
+	//exit_loop := true
 	log_file, _ := os.OpenFile("openvpn.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	defer log_file.Close()
 	wrt := io.MultiWriter(log_file)
@@ -30,12 +30,20 @@ func main(){
 	defer g.Close()
 	g.SetManagerFunc(ui.Layout)
 	if err := g.SetKeybinding("", gocui.KeyCtrlC, gocui.ModNone, ui.Quit); err != nil {log.Panicln(err)}
-	openvpn.Tunnel("euro-hop.ovpn", wrt, term)
-	exit_test := <- term
-	// Start the background services
-	if exit_test{g.Close()}
+	go g.MainLoop()
+	for true {
+		select {
+			case <- done:
+				//exit_loop = false
+			default:
+				openvpn.WheelInTheSky(1000, wrt, term)
+				time.Sleep(500*time.Millisecond)
+		}
+	}
+		// Start the background services
+		g.Close()
 
-	//Launch the gui
-	g.MainLoop()
+		//Launch the gui
 
-}
+	}
+
