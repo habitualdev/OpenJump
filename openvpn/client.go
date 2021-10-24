@@ -4,9 +4,11 @@ import (
 	"fmt"
 	"github.com/mysteriumnetwork/go-openvpn/openvpn3"
 	"io"
+	"io/fs"
 	"io/ioutil"
 	"os"
 	"strings"
+	"time"
 )
 
 type callbacks interface {
@@ -43,18 +45,22 @@ func (lc StdoutLogger) Log(text string) {
 	lc(text)
 }
 
-func Tunnel(config_file string, wrt io.Writer, term chan bool) {
-	if len(os.Args) < 2 {
-		fmt.Println("Missing profile file")
-		fmt.Fprintln(wrt, "Missing profile file")
-		go func() { term <- true }()
+func GetConfigs() []fs.FileInfo {
+	dir_check, err := ioutil.ReadDir("hops")
+	if err != nil {
+		os.Mkdir("hops", 0777)
+		dir_check, err = ioutil.ReadDir("hops")
 	}
+	return dir_check
 
+}
+
+func Tunnel(config_file string, waittime int, wrt io.Writer, terminate chan bool) {
 
 	var logger StdoutLogger = func(text string) {
 		lines := strings.Split(text, "\n")
 		for _, line := range lines {
-			fmt.Println("Library check >>", line)
+			fmt.Fprintln(wrt, "Library check >>", line)
 		}
 	}
 
@@ -69,11 +75,28 @@ func Tunnel(config_file string, wrt io.Writer, term chan bool) {
 
 	session := openvpn3.NewSession(config, openvpn3.UserCredentials{}, &loggingCallbacks{})
 	session.Start()
-	err = session.Wait()
 	if err != nil {
 		fmt.Println("Openvpn3 error: ", err)
 	} else {
 		fmt.Println("Graceful exit")
 	}
+	for {
+		select {
+		case <-terminate:
+			session.Stop()
+		case <-time.After(time.Duration(waittime) * time.Millisecond):
+			session.Stop()
 
+		}
+	}
+}
+
+func WheelInTheSky(waittime int, wrt io.Writer, terminate chan bool) {
+	config_list := GetConfigs()
+	for _, config_file := range config_list {
+		filename := config_file.Name()
+		pathname := "hops/" + filename
+		Tunnel(pathname, waittime, wrt, terminate)
+
+	}
 }
