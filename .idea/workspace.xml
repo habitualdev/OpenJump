@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="408aa8d4-b3b5-4b92-abaa-7751eabbc0e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gojump_linux.go" beforeDir="false" afterPath="$PROJECT_DIR$/Gojump_linux.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hops/test.ovpn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/openvpn.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/openvpn/manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/libopenvpn/manager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openvpn_bin" beforeDir="false" afterPath="$PROJECT_DIR$/openvpn_bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/ui.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ui.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoJump.go" beforeDir="false" afterPath="$PROJECT_DIR$/GoJump.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

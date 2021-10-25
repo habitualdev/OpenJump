@@ -18,7 +18,11 @@ func main() {
 
 	waittime := 300
 
-	if len(os.Args) == 2{
+	if len(os.Args) > 2 {
+		println("Error: Too many arguments")
+		os.Exit(1)
+	}
+		if len(os.Args) == 2{
 		if os.Args[1] == "-h"{
 			println("Utility to Rotate across multiple openvpn tunnels in an automated fashion.")
 			println("Usage: ./OpenJump <Rotate time in seconds>")
@@ -27,7 +31,9 @@ func main() {
 		}
 		if arg_int, err := strconv.Atoi(os.Args[1]); err == nil {
 			waittime = arg_int
-		} else {println("Error: Value Supplied is not an integer")}
+		} else {println("Error: Value Supplied is not an integer")
+		os.Exit(1)
+		}
 	}
 
 	// Init the gui
