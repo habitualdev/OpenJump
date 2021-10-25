@@ -4,12 +4,12 @@ go 1.17
 
 require (
 	github.com/jroimartin/gocui v0.5.0
-	github.com/mysteriumnetwork/go-openvpn v0.0.23
 	github.com/shirou/gopsutil/v3 v3.21.9
 )
 
 require (
 	github.com/StackExchange/wmi v1.2.1 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/go-ole/go-ole v1.2.5 // indirect
 	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/nsf/termbox-go v1.1.1 // indirect
